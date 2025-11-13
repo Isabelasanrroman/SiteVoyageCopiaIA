@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOYAGE | Login</title>
+
+  <!-- Fontes Luxuosas -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a1a3f 40%, #1b2750 100%);
+      background: linear-gradient(to bottom right, rgba(10, 26, 63, 0.7), rgba(15, 40, 90, 0.7)),
+        url('imagens/fundo2.png') center/cover no-repeat;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 80px;
+      background: rgba(10, 26, 63, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: #d4af37;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      margin-top: 80px;
+      width: 420px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 50px 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: #f8f8f8;
+      margin-bottom: 40px;
+      font-size: 26px;
+      letter-spacing: 0.5px;
+    }
+
+    label {
+      font-weight: 500;
+      color: #f1f1f1;
+      font-size: 14px;
+      display: block;
+      text-align: left;
+      margin-top: 15px;
+      margin-bottom: 6px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    input:focus {
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 0 2px #d4af37;
+    }
+
+    .checkbox-area {
+      margin-top: 15px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .checkbox-area input {
+      margin-right: 6px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 30px;
+      padding: 14px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #d4af37, #c19b2f);
+      color: #0a1a3f;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      background: linear-gradient(90deg, #e0c050, #d4af37);
+    }
+
+    .cadastrar-se {
+      display: block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #d4af37;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .cadastrar-se:hover {
+      color: #fffffe;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">VOYAGE</div>
+  </header>
+
+  <div class="container">
+    <h2>Bem-vindo à VOYAGE</h2>
+    <label for="email">E-mail</label>
+    <input type="email" id="email" placeholder="Digite seu e-mail">
+
+    <label for="password">Senha</label>
+    <input type="password" id="password" placeholder="Digite sua senha">
+
+    <div class="checkbox-area">
+      <input type="checkbox" id="exibir-senha" onclick="toggleSenha()"> Exibir senha
+    </div>
+
+    <button onclick="validarLogin()">Acessar</button>
+
+    <a href="cadastre-se.html" class="cadastrar-se">Não tem conta? Cadastre-se</a>
+  </div>
+
+  
+  <script>
+    function validarLogin() {
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      let lista = window.localStorage.getItem('usuarios');
+      lista = JSON.parse(lista);
+
+      let logado = false;
+      if (lista) {
+        for (let i = 0; i < lista.length; i++) {
+          const usuario = lista[i];
+          if (usuario.email === email.value && usuario.password === password.value) {
+            alert('Sucesso! Você está logado.');
+            logado = true;
+            break;
+          }
+        }
+      }
+
+      if (!logado) {
+        alert('Login inválido.');
+      } else {
+        window.location.href = 'inicio.html';
+      }
+    }
+
+    function toggleSenha() {
+      const password = document.getElementById('password');
+      password.type = password.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+</body>
+
+</html>

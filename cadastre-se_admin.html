@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro Admin | VOYAGER</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      background: linear-gradient(to bottom right, rgba(10, 26, 63, 0.7), rgba(15, 40, 90, 0.7)),
+        url('imagens/fundo2.png') center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+    }
+
+    /* --- Lado esquerdo: mensagem e marca --- */
+    .left {
+      flex: 1;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px;
+    }
+
+    .left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #d4af37;
+      letter-spacing: 1px;
+    }
+
+    .left p {
+      font-size: 18px;
+      color: #e0e0e0;
+      max-width: 400px;
+      line-height: 1.6;
+    }
+
+    /* --- Lado direito: cadastro --- */
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
+    }
+
+    .register-box {
+      width: 100%;
+      max-width: 400px;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .register-box h2 {
+      font-family: 'Playfair Display', serif;
+      color: #d4af37;
+      margin-bottom: 35px;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 15px;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder {
+      color: #f0f0f0;
+    }
+
+    input:focus {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .checkbox-container {
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 14px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-container input {
+      width: auto;
+      margin-right: 10px;
+      background-color: transparent;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #d4af37, #c19b2f);
+      color: #0a1a3f;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    a {
+      display: block;
+      margin-top: 25px;
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #d4af37;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>VOYAGER ADMIN</h1>
+      <p>Gerencie o sistema com segurança. <br> Cadastre novos administradores para ter acesso completo à plataforma.</p>
+    </div>
+
+    <div class="right">
+      <div class="register-box">
+        <h2>Criar Conta</h2>
+        <input type="text" id="nome" placeholder="Nome Completo">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Senha">
+        <input type="password" id="confirma-password" placeholder="Confirme a Senha">
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="exibir-senha" onclick="toggleSenha()"> Exibir Senhas
+        </div>
+
+        <button onclick="cadastrarUsuario()">Cadastrar-se</button>
+        <a href="adiministrador.html">Voltar para Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const password = document.getElementById('password');
+    const confirmaPassword = document.getElementById('confirma-password');
+
+    function cadastrarUsuario() {
+      const nome = document.getElementById('nome');
+      const email = document.getElementById('email');
+
+      if (password.value === confirmaPassword.value) {
+        let lista = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+        lista.push({
+          nome: nome.value,
+          email: email.value,
+          password: password.value
+        });
+
+        localStorage.setItem('usuarios', JSON.stringify(lista));
+        alert('Usuário cadastrado com sucesso!');
+
+        nome.value = '';
+        email.value = '';
+        password.value = '';
+        confirmaPassword.value = '';
+      } else {
+        alert('Senha não confere!');
+        password.value = '';
+        confirmaPassword.value = '';
+      }
+    }
+
+    function toggleSenha() {
+      const exibirSenha = document.getElementById('exibir-senha');
+      if (exibirSenha.checked) {
+        password.type = 'text';
+        confirmaPassword.type = 'text';
+      } else {
+        password.type = 'password';
+        confirmaPassword.type = 'password';
+      }
+    }
+  </script>
+</body>
+
+</html>

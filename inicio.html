@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyager Lux | Experiências de Viagem Exclusivas</title>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f8f8;
+      color: #2e2e2e;
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background-color: #0a1a3f;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 58px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+
+
+
+    .menu {
+      font-size: 32px;
+      color: #d4af37;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    .menu:hover {
+      transform: scale(1.2);
+    }
+
+    .menu-links {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      background: rgba(10, 26, 63, 0.95);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .menu-links a {
+      color: #f0f0f0;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-weight: 500;
+      font-size: 15px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .menu-links a:hover {
+      background: rgba(255, 215, 0, 0.1);
+      color: #d4af37;
+    }
+
+    .menu-links.show {
+      display: flex;
+    }
+
+
+
+
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px 8%;
+      background: linear-gradient(to right, #0a1a3f 55%, #0a1a3f 45%);
+    }
+
+    .hero-text {
+      flex: 1;
+      color: white;
+      padding-right: 40px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      margin-bottom: 25px;
+      color: #d4af37;
+      line-height: 1.2;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: #e0e0e0;
+      max-width: 500px;
+    }
+
+    .hero-btn {
+      margin-top: 40px;
+      background-color: #d4af37;
+      color: #0a1a3f;
+      border: none;
+      padding: 15px 40px;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.4s ease;
+    }
+
+    .hero-btn:hover {
+      background-color: #ebcd76;
+      transform: translateY(-4px);
+    }
+
+    .hero img {
+      flex: 1;
+      width: 90%;
+      max-width: 500px;
+      height: 500px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* ===== PACOTES ===== */
+    section.pacotes {
+      padding: 90px 10%;
+      background-color: #f8f8f8;
+      text-align: center;
+    }
+
+    section.pacotes h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: #0a1a3f;
+      margin-bottom: 60px;
+    }
+
+    .cards {
+      display: flex;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      width: 1000px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.5s ease;
+      position: relative;
+  
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 25px;
+      text-align: left;
+    }
+
+    .card-body h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .card-body p {
+      color: #0a1a3f;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .preco {
+      font-size: 20px;
+      font-weight: bold;
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .saiba-mais {
+      display: inline-block;
+      color: #000000;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .saiba-mais:hover {
+      border-color: #d4af37;
+      color: #d4af37;
+    }
+
+    /* ===== SOBRE ===== */
+    section.sobre {
+      background-color: #e7e7e7;
+      color: #000000;
+      text-align: center;
+      padding: 80px 15%;
+    }
+
+    section.sobre h3 {
+      font-family: 'Playfair Display', serif;
+      color: #d4af37;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    section.sobre p {
+      font-size: 17px;
+      color: #000000;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .footer {
+      background: #0a1a3f;
+      color: #eee;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .footer .coluna {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+    }
+
+    .footer h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .footer p {
+      margin: 5px 0;
+      color: #ccc;
+    }
+
+    .footer .copy {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      border-top: 1px solid #444;
+      padding-top: 10px;
+      color: #aaa;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">VOYAGER</div>
+    <div class="menu" onclick="toggleMenu()">&#9776;</div>
+
+    <div class="menu-links" id="menuLinks">
+      <a href="inicio.html">Página Inicial</a>
+      <a href="sobrenos.html">Sobre Nós</a>
+      <a href="contato.html">Contato</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Experiências de Viagem Incomparáveis</h1>
+      <p>Descubra o mundo com o toque de luxo e exclusividade que só a Voyager oferece. Pacotes personalizados, destinos únicos e conforto absoluto em cada detalhe.</p>
+      <button class="hero-btn" onclick="window.location.href='montarpacote.html'">Monte seu Pacote</button>
+    </div>
+    <img src="https://organicsnewsbrasil.com.br/wp-content/uploads/2015/10/natureza.jpg" alt="">
+  </section>
+
+  <section class="pacotes">
+    <h2>Pacotes Exclusivos</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="imagens/SaoPaulo.jpg" alt="">
+        <div class="card-body">
+          <h4>São Paulo</h4>
+          <p>7 noites em bangalôs sobre o mar + voo executivo</p>
+          <p class="preco">R$ 5.799,00</p>
+          <a href="saopaulo.html" class="saiba-mais">Saiba mais</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="imagens/Maceio.PNG" alt="">
+        <div class="card-body">
+          <h4>Maceió</h4>
+          <p>5 noites com vista para o pôr do sol + cruzeiro privativo</p>
+          <p class="preco">R$ 5.499,00</p>
+          <a href="maceio.html" class="saiba-mais">Saiba mais</a>
+        </div>
+      </div>
+    
+
+      <div class="card">
+          <img src="imagens/Fortaleza.PNG" alt="">
+          <div class="card-body">
+            <h4>Fortaleza</h4>
+            <p>5 noites em hotel boutique + experiências gastronômicas</p>
+            <p class="preco">R$ 4.999,00</p>
+            <a href="fortaleza.html" class="saiba-mais">Saiba mais</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="imagens/FozDoIguaçu.PNG" alt="">
+          <div class="card-body">
+            <h4>Foz do Iguaçu</h4>
+            <p>5 noites em hotel boutique + experiências gastronômicas</p>
+            <p class="preco">R$ 2.799,00</p>
+            <a href="fozdoiguacu.html" class="saiba-mais">Saiba mais</a>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="sobre">
+    <h3>Sobre a Voyager</h3>
+    <p>Somos uma agência de viagens que cria experiências únicas para viajantes exigentes. Trabalhamos com os melhores parceiros do mundo para garantir conforto, exclusividade e autenticidade em cada destino.</p>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="coluna">
+        <h3>Sobre Nós</h3>
+        <p>Somos uma agência especializada em viagens personalizadas para você.</p>
+      </div>
+      <div class="coluna">
+        <h3>Contato</h3>
+        <p>Email: contato@voyager.com</p>
+        <p>Telefone: (11) 99999-9999</p>
+      </div>
+      <div class="coluna">
+        <h3>Endereço</h3>
+        <p>Av. Conceição, 125</p>
+        <p>São Paulo - SP</p>
+      </div>
+    </div>
+    <div class="copy">
+      <p>2025 Voyager - Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("menuLinks");
+    menu.classList.toggle("show");
+  }
+</script>
+</html>

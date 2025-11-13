@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Viagens</title>
+
+  <!-- Fontes -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f8f8;
+      color: #2e2e2e;
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background-color: #0a1a3f;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 58px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: 1px;
+    }
+
+    .menu {
+      font-size: 32px;
+      color: #d4af37;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    .menu:hover {
+      transform: scale(1.2);
+    }
+
+    .menu-links {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      background: rgba(10, 26, 63, 0.95);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .menu-links a {
+      color: #f0f0f0;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-weight: 500;
+      font-size: 15px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .menu-links a:hover {
+      background: rgba(255, 215, 0, 0.1);
+      color: #d4af37;
+    }
+
+    .menu-links.show {
+      display: flex;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 77px 8%;
+      background: linear-gradient(to right, #0a1a3f 55%, #0a1a3f 45%);
+      color: white;
+    }
+
+    .hero-text {
+      flex: 1;
+      padding-right: 40px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      margin-bottom: 25px;
+      color: #d4af37;
+      line-height: 1.2;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: #e0e0e0;
+      max-width: 500px;
+      margin-bottom: 30px;
+    }
+
+    .hero-btn {
+      margin-top: 20px;
+      background-color: #d4af37;
+      color: #0a1a3f;
+      border: none;
+      padding: 15px 40px;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.4s ease;
+      margin-right: 15px;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    }
+
+    .texto {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 20px;
+      background-color: #f0f0f0;
+      flex-wrap: wrap;
+    }
+
+    .texto .card {
+      background-color: #060c47;
+      color:#d4af37;
+      padding: 40px 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 400px;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3;
+    }
+
+    .texto p {
+      color: #ffffff;
+    }
+
+    /* ===== SOBRE ===== */
+    section.sobre {
+      background-color: #e7e7e7;
+      color: #0a1a3f;
+      text-align: center;
+      padding: 80px 15%;
+    }
+
+    section.sobre h3 {
+      font-family: 'Playfair Display', serif;
+      color: #d4af37;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    section.sobre p {
+      font-size: 17px;
+      color: #0a1a3f;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    img {
+      border-radius: 5%;
+      width: 50%;
+      height: 50%;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0a1a3f;
+      color: #eee;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 5px 0;
+      color: #ccc;
+    }
+
+    footer .copy {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      border-top: 1px solid #444;
+      padding-top: 10px;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">VOYAGE</div>
+    <div class="menu" onclick="toggleMenu()">&#9776;</div>
+
+    <div class="menu-links" id="menuLinks">
+      <a href="usuarios.html">Usuários</a>
+      <a href="calendario.html">Pedidos</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Bem-vindo à sua área de gestão!</h1>
+      <p>Obtenha uma visão completa e detalhada de todos os usuários e pedidos, e tome decisões estratégicas para
+        otimizar pacotes, expandir clientes e garantir a satisfação total.</p>
+      <button class="hero-btn" onclick="window.location.href='usuarios.html'">Usuários</button>
+      <button class="hero-btn" onclick="window.location.href='calendario.html'">Pedidos</button>
+    </div>
+    <img src="https://www.lugaresincertos.com/wp-content/uploads/2017/10/lago-moraine-banff-alberta-canada-web-1170-768.jpg" alt="">
+  </section>
+
+  <section class="texto">
+    <div class="card">
+      <h1>USUÁRIOS</h1>
+      <p>Gerencie os usuários cadastrados</p>
+    </div>
+    <div class="card">
+      <h1>PEDIDOS</h1>
+      <p>Gerencie os pedidos feitos pelos usuários</p>
+    </div>
+  </section>
+
+  <section class="sobre">
+    <h3>Sobre a Gestão</h3>
+    <p>Este painel foi desenvolvido para oferecer controle total sobre usuários, pedidos e pacotes, permitindo uma
+      administração eficiente e estratégica do seu negócio.</p>
+  </section>
+
+  <footer>
+    <p>2025 Gestão de Viagens - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menuLinks");
+      menu.classList.toggle("show");
+    }
+  </script>
+
+</body>
+
+</html>

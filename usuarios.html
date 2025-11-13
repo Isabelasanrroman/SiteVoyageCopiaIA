@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOYAGER | Gerenciamento de Usuários</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Reset e fontes */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #0a1a3f, #152a5b);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      background: linear-gradient(135deg, #1f2d5a, #0a1a3f);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: #d4af37;
+      letter-spacing: 2px;
+    }
+
+    .container {
+      text-align: center;
+      margin: 40px auto;
+    }
+
+    .container p {
+      font-size: 22px;
+      color: #cfcfcf;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 65%;
+      margin: 0 auto 50px auto;
+      border-collapse: collapse;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 18px;
+    }
+
+    thead th {
+      background: linear-gradient(90deg, #d4af37, #c19b2f);
+      color: #0a1a3f;
+      padding: 20px 20px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    tbody td {
+      padding: 20px 20px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: rgba(112, 154, 210, 0.08);
+    }
+
+    tbody tr:hover {
+      background-color: rgba(100, 100, 211, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>VOYAGER</h1>
+  </header>
+
+  <div class="container">
+    <p>Gerenciamento de Usuários Administrativos</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="tbody-usuarios">
+     
+    </tbody>
+  </table>
+
+  <script>
+    function carregarUsuarios() {
+      const usuariosLS = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const tbodyUsuarios = document.getElementById('tbody-usuarios');
+
+      tbodyUsuarios.innerHTML = ''; 
+
+      usuariosLS.forEach(usuario => {
+        const linha = document.createElement('tr');
+
+        const colunaNome = document.createElement('td');
+        colunaNome.textContent = usuario.nome;
+
+        const colunaEmail = document.createElement('td');
+        colunaEmail.textContent = usuario.email;
+
+        linha.appendChild(colunaNome);
+        linha.appendChild(colunaEmail);
+
+        tbodyUsuarios.appendChild(linha);
+      });
+    }
+
+    carregarUsuarios();
+  </script>
+</body>
+
+</html>
