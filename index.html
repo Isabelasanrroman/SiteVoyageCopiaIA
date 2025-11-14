@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VOYAGE | Experiências de Viagem Exclusivas</title>
 
-  <!-- Fontes premium -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <style>
     * {
@@ -23,17 +24,62 @@
       overflow-x: hidden;
     }
 
-    /* ===== HEADER ===== */
     header {
+      background-color: #0a1a3f;
+      color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 80px;
-      background-color: #0b1b3c;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      padding: 18px 58px;
       position: sticky;
       top: 0;
-      z-index: 999;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu {
+      font-size: 32px;
+      color: #d4af37;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    .menu:hover {
+      transform: scale(1.2);
+    }
+
+    .menu-links {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      background: rgba(10, 26, 63, 0.95);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .menu-links a {
+      color: #f0f0f0;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-weight: 500;
+      font-size: 15px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .menu-links a:hover {
+      background: rgba(255, 215, 0, 0.1);
+      color: #d4af37;
+    }
+
+    .menu-links.show {
+      display: flex;
     }
 
     .logo {
@@ -44,46 +90,23 @@
       letter-spacing: 1px;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 35px;
-    }
-
-    nav ul li a {
+    nav a {
+      color: white;
       text-decoration: none;
-      color: #f5f5f5;
+      margin-left: 30px;
       font-weight: 500;
-      font-size: 16px;
-      position: relative;
       transition: color 0.3s ease;
     }
 
-    nav ul li a::after {
-      content: "";
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #d4af37;
-      transition: width 0.3s ease;
-    }
-
-    nav ul li a:hover::after {
-      width: 100%;
-    }
-
-    nav ul li a:hover {
+    nav a:hover {
       color: #d4af37;
     }
 
-    /* ===== HERO ===== */
     .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 61px 10%;
+      padding: 65px 10%;
       background: linear-gradient(to right, #0b1b3c 55%, #0b1b3c 45%);
     }
 
@@ -125,7 +148,7 @@
     .entrar {
       background: #d4af37;
       color: #0b1b3c;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .entrar:hover {
@@ -144,7 +167,6 @@
       transform: translateY(-3px);
     }
 
-    /* ===== IMAGEM ===== */
     .imagem {
       display: flex;
       width: 50%;
@@ -157,7 +179,6 @@
       gap: 0px;
     }
 
-    /* ===== RODAPÉ ===== */
     footer {
       background-color: #0b1b3c;
       color: #ccc;
@@ -188,32 +209,32 @@
       text-align: center;
       font-size: 14px;
       margin-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 15px;
       color: #777;
     }
-
   </style>
 </head>
 
 <body>
 
   <header>
-    <div class="logo">VOYAGE</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="sobrenos.html">Sobre Nós</a></li>
-        <li><a href="contato.html">Contato</a></li>
-        <li><a href="adiministrador.html">Administrador</a></li>
-      </ul>
-    </nav>
+    <div class="logo">VOYAGER</div>
+    <div class="menu" onclick="toggleMenu()">&#9776;</div>
+
+    <div class="menu-links" id="menuLinks">
+      <a href="inicio.html">Página Inicial</a>
+      <a href="sobrenos.html">Sobre Nós</a>
+      <a href="contato.html">Contato</a>
+      <a href="adiministrador.html">Administrador</a>
+    </div>
   </header>
 
   <div class="container">
     <div class="texto">
       <h1>Viagens com Elegância e Exclusividade</h1>
-      <p>Na VOYAGE, transformamos destinos em experiências memoráveis. Cuidamos de cada detalhe para que sua jornada seja perfeita do início ao fim.</p>
+      <p>Na VOYAGE, transformamos destinos em experiências memoráveis. Cuidamos de cada detalhe para que sua jornada
+        seja perfeita do início ao fim.</p>
       <div class="botoes">
         <a href="admin.html" class="entrar">Entrar</a>
         <a href="cadastre-se.html" class="cadastrar">Cadastrar-se</a>
@@ -227,4 +248,12 @@
 
 
 </body>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("menuLinks");
+    menu.classList.toggle("show");
+  }
+</script>
+
 </html>

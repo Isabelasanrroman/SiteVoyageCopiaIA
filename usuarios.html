@@ -7,10 +7,10 @@
   <title>VOYAGER | Gerenciamento de Usuários</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet">
   <style>
-    /* Reset e fontes */
     * {
       margin: 0;
       padding: 0;
@@ -89,7 +89,6 @@
       transition: all 0.3s ease;
       cursor: pointer;
     }
-
   </style>
 </head>
 
@@ -99,7 +98,7 @@
   </header>
 
   <div class="container">
-    <p>Gerenciamento de Usuários Administrativos</p>
+    <p>Gerenciamento de Usuários</p>
   </div>
 
   <table>
@@ -110,7 +109,7 @@
       </tr>
     </thead>
     <tbody id="tbody-usuarios">
-     
+
     </tbody>
   </table>
 
@@ -119,7 +118,7 @@
       const usuariosLS = JSON.parse(localStorage.getItem('usuarios')) || [];
       const tbodyUsuarios = document.getElementById('tbody-usuarios');
 
-      tbodyUsuarios.innerHTML = ''; 
+      tbodyUsuarios.innerHTML = '';
 
       usuariosLS.forEach(usuario => {
         const linha = document.createElement('tr');
